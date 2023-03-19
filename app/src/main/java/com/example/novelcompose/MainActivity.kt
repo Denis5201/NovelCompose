@@ -7,6 +7,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.novelcompose.screens.GreetingScreen
+import com.example.novelcompose.screens.SceneScreen
+import com.example.novelcompose.screens.StartEndScreen
 import com.example.novelcompose.ui.theme.NovelComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +27,40 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    val novelController = NovelController()
+                    novelController.init(applicationContext)
 
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = "${Screens.StartEndScreen.route}/{${Constants.IS_LAST_SCREEN}}"
+                    ) {
+                        composable(
+                            route = "${Screens.StartEndScreen.route}/{${Constants.IS_LAST_SCREEN}}",
+                            arguments = listOf(
+                                navArgument(Constants.IS_LAST_SCREEN) {
+                                    type = NavType.BoolType
+                                    defaultValue = false
+                                }
+                            )
+                        ) {
+                            val isLast = it.arguments?.getBoolean(Constants.IS_LAST_SCREEN)
+                            StartEndScreen(navController, isLast ?: false)
+                        }
+                        composable(Screens.GreetingScreen.route) {
+                            GreetingScreen(navController, novelController)
+                        }
+                        composable(
+                            route = "${Screens.SceneScreen.route}/{${Constants.SCENE_ID}}",
+                            arguments = listOf(
+                                navArgument(Constants.SCENE_ID) { type = NavType.IntType }
+                            )
+                        ) {
+                            val id = it.arguments?.getInt(Constants.SCENE_ID)
+                            SceneScreen(navController, novelController, id ?: -1)
+                        }
+                    }
                 }
             }
         }
