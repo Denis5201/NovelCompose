@@ -1,5 +1,6 @@
 package com.example.novelcompose.screens
 
+import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -14,13 +15,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.novelcompose.Constants
-import com.example.novelcompose.NovelController
 import com.example.novelcompose.R
 import com.example.novelcompose.Screens
 import com.example.novelcompose.ui.theme.grey
 
 @Composable
-fun GreetingScreen(navController: NavController, novelController: NovelController) {
+fun GreetingScreen(navController: NavController) {
     var text by remember {
         mutableStateOf("")
     }
@@ -57,18 +57,21 @@ fun GreetingScreen(navController: NavController, novelController: NovelControlle
 
         DarkButton(
             text = stringResource(R.string.confirm),
-            click = {
-                if (text.isEmpty()) {
-                    Toast.makeText(
-                        context,
-                        context.resources.getString(R.string.name_is_empty),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@DarkButton
-                }
-                novelController.userName = text
-                navController.navigate("${Screens.SceneScreen.route}/${Constants.FIRST_SCENE_ID}")
-            }
+            click = { startHistory(navController, text, context) }
         )
     }
+}
+
+fun startHistory(navController: NavController, userName: String, context: Context) {
+    if (userName.isEmpty()) {
+        Toast.makeText(
+            context,
+            context.resources.getString(R.string.name_is_empty),
+            Toast.LENGTH_SHORT
+        ).show()
+        return
+    }
+    navController.navigate(
+        "${Screens.SceneScreen.route}/${Constants.FIRST_SCENE_ID}?${Constants.USER_NAME}=$userName"
+    )
 }

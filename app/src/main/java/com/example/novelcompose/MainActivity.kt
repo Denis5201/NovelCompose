@@ -27,8 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    val novelController = NovelController()
-                    novelController.init(applicationContext)
+                    val novelController = NovelController(applicationContext)
 
                     val navController = rememberNavController()
 
@@ -49,16 +48,19 @@ class MainActivity : ComponentActivity() {
                             StartEndScreen(navController, isLast ?: false)
                         }
                         composable(Screens.GreetingScreen.route) {
-                            GreetingScreen(navController, novelController)
+                            GreetingScreen(navController)
                         }
                         composable(
-                            route = "${Screens.SceneScreen.route}/{${Constants.SCENE_ID}}",
+                            route = "${Screens.SceneScreen.route}/{${Constants.SCENE_ID}}" +
+                            "?${Constants.USER_NAME}={${Constants.USER_NAME}}",
                             arguments = listOf(
-                                navArgument(Constants.SCENE_ID) { type = NavType.IntType }
+                                navArgument(Constants.SCENE_ID) { type = NavType.IntType },
+                                navArgument(Constants.USER_NAME) { nullable = true }
                             )
                         ) {
                             val id = it.arguments?.getInt(Constants.SCENE_ID)
-                            SceneScreen(navController, novelController, id ?: -1)
+                            val userName = it.arguments?.getString(Constants.USER_NAME)
+                            SceneScreen(navController, novelController, id ?: -1, userName)
                         }
                     }
                 }

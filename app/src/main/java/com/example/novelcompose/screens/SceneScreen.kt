@@ -13,7 +13,12 @@ import com.example.novelcompose.R
 import com.example.novelcompose.Screens
 
 @Composable
-fun SceneScreen(navController: NavController, novelController: NovelController, sceneId: Int) {
+fun SceneScreen(
+    navController: NavController,
+    novelController: NovelController,
+    sceneId: Int,
+    userName: String?
+) {
 
     val scene = novelController.script.find { it.id == sceneId } ?: novelController.script.last()
     val countButtons = scene.sceneButtons.size
@@ -33,12 +38,12 @@ fun SceneScreen(navController: NavController, novelController: NovelController, 
 
         SceneText(
             text = if (sceneId == Constants.FIRST_SCENE_ID) {
-                stringResource(R.string.beginning_novel, novelController.userName)
+                stringResource(R.string.beginning_novel, userName!!)
             } else {
                 scene.mainText
             }
         )
-        Spacer(modifier = Modifier.padding(novelController.calculateFirstPadding(countButtons).dp))
+        Spacer(modifier = Modifier.padding(novelController.calculateFirstPadding(countButtons)))
 
         if (countButtons == 3) {
             SceneButton(

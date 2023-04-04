@@ -1,16 +1,17 @@
 package com.example.novelcompose
 
 import android.content.Context
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.example.novelcompose.models.Scene
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-class NovelController {
+class NovelController(context: Context) {
 
     var script: List<Scene> = emptyList()
-    var userName = ""
 
-    fun init(context: Context) {
+    init {
         val jsonString =
             context.assets.open(Constants.FILE_NAME).bufferedReader().use { it.readText() }
         script = Json.decodeFromString(jsonString)
@@ -24,10 +25,10 @@ class NovelController {
         }
     }
 
-    fun calculateFirstPadding(size: Int): Int {
+    fun calculateFirstPadding(size: Int): Dp {
         return when (size) {
-            3 -> 10
-            else -> 26
+            3 -> 10.dp
+            else -> 26.dp
         }
     }
 }
