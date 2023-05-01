@@ -1,0 +1,166 @@
+[
+  {
+    "id": 1,
+    "backgroundResource": "main",
+    "mainText": "Отлично, <username>! Чем займемся?",
+    "sceneButtons": [
+      {
+        "text": "Пойдем на пробежку",
+        "nextSceneId": 2
+      },
+      {
+        "text": "Пойдем в поход",
+        "nextSceneId": 3
+      },
+      {
+        "text": "Погуляем по полю",
+        "nextSceneId": 4
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "backgroundResource": "running",
+    "mainText": "Может, пойдем домой?..",
+    "sceneButtons": [
+      {
+        "text": "Да, и посмотрим фильм",
+        "nextSceneId": 5
+      },
+      {
+        "text": "Да, и отпразднуем хэллоуин",
+        "nextSceneId": 8
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "backgroundResource": "camping",
+    "mainText": "Как уютно... Но уже темнеет.",
+    "sceneButtons": [
+      {
+        "text": "Пойдем домой и посмотрим фильм",
+        "nextSceneId": 5
+      },
+      {
+        "text": "Пойдем домой и отпразднуем Хэллоуин",
+        "nextSceneId": 8
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "backgroundResource": "field",
+    "mainText": "Тебе грустно... Пойдем домой?",
+    "sceneButtons": [
+      {
+        "text": "Может, посмотрим фильм?",
+        "nextSceneId": 5
+      },
+      {
+        "text": "Да, отпразднуем Хэллоуин",
+        "nextSceneId": 8
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "backgroundResource": "film",
+    "mainText": "Как тебе фильм?",
+    "sceneButtons": [
+      {
+        "text": "Мне понравился!",
+        "nextSceneId": 6
+      },
+      {
+        "text": "Не очень...",
+        "nextSceneId": 7
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "backgroundResource": "film",
+    "mainText": "Отлично! А теперь пора спать...",
+    "sceneButtons": [
+      {
+        "text": "Да, уже поздно...",
+        "nextSceneId": 0
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "backgroundResource": "film",
+    "mainText": "Жаль... Тогда пойдем спать?",
+    "sceneButtons": [
+      {
+        "text": "Да, уже поздно...",
+        "nextSceneId": 0
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "backgroundResource": "halloween",
+    "mainText": "Получается очень красиво!",
+    "sceneButtons": [
+      {
+        "text": "Да! Может, посмотрим фильм?",
+        "nextSceneId": 5
+      },
+      {
+        "text": "Да! Давай сделаем костюмы!",
+        "nextSceneId": 9
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "backgroundResource": "suit",
+    "mainText": "Мне нравится твой костюм.",
+    "sceneButtons": [
+      {
+        "text": "Твой тоже очень красивый!",
+        "nextSceneId": 10
+      },
+      {
+        "text": "А мне, если честно, не нравится твой...",
+        "nextSceneId": 11
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "backgroundResource": "suit",
+    "mainText": "Спасибо! Ну, пойдем спать?",
+    "sceneButtons": [
+      {
+        "text": "Да, уже поздно...",
+        "nextSceneId": 0
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "backgroundResource": "suit",
+    "mainText": "Ничего, я не в обиде. Пойдем спать?",
+    "sceneButtons": [
+      {
+        "text": "Да, уже поздно...",
+        "nextSceneId": 0
+      }
+    ]
+  },
+  {
+    "id": -1,
+    "backgroundResource": "main",
+    "mainText": "ERROR",
+    "sceneButtons": [
+      {
+        "text": "ERROR",
+        "nextSceneId": 0
+      }
+    ]
+  }
+]
